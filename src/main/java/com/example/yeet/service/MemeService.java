@@ -63,6 +63,6 @@ public class MemeService implements MemeServiceInterface{
         if(count == 0){
             count = 1;
         }
-        return (sum/count);
+        return sum/count;
     }
 }
