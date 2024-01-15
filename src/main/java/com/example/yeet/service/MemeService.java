@@ -2,10 +2,10 @@ package com.example.yeet.service;
 
 import com.example.yeet.converter.ScoreConverter;
 import com.example.yeet.dto.AddMemeDTO;
-import com.example.yeet.dto.MemeDTO;
 import com.example.yeet.dto.ScoreDTO;
 import com.example.yeet.exceptions.MemeNotFoundException;
 import com.example.yeet.models.MemeDAO;
+import com.example.yeet.models.ScoreDAO;
 import com.example.yeet.repository.MemeRepository;
 import com.example.yeet.repository.ScoreRepository;
 import com.example.yeet.repository.UserRepository;
@@ -58,6 +58,17 @@ public class MemeService implements MemeServiceInterface{
         List<ScoreDTO> scoresList = ScoreConverter.mapToScoresDTO(scoreRepository.findScoreDAOSByMeme_Id(meme_id));
         Double sum = scoresList.stream()
                 .mapToDouble(ScoreDTO::getScore)
+                .sum();
+        long count = scoresList.size();
+        if(count == 0){
+            count = 1;
+        }
+        return sum/count;
+    }
+
+    public static Double countMean(List<ScoreDAO> scoresList){
+        Double sum = scoresList.stream()
+                .mapToDouble(ScoreDAO::getScore)
                 .sum();
         long count = scoresList.size();
         if(count == 0){

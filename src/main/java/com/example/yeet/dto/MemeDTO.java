@@ -12,4 +12,5 @@ public class MemeDTO {
     private UserDTO user;
     private String url;
     private String title;
+    private Double mean;
 }
