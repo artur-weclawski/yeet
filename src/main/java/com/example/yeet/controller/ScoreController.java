@@ -20,7 +20,7 @@ public class ScoreController {
 
     @PostMapping("")
     public ScoreDTO addScore(@RequestBody ScoreDTO scoreDTO){
-        return ScoreConverter.mapToScoreDTO(scoreServiceInterface.addScore(scoreDTO));
+        return ScoreConverter.mapToScoreDTO(scoreServiceInterface.addOrUpdateScore(scoreDTO));
     }
 
     @PutMapping("")

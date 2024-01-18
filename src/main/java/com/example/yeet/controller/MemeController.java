@@ -10,7 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping("/")
 @RestController
@@ -42,6 +44,8 @@ public class MemeController {
     @DeleteMapping("meme/{meme_id}")
     public ResponseEntity<?> removeMeme(@PathVariable long meme_id){
         memeServiceInterface.removeMeme(meme_id);
-        return new ResponseEntity<>("Meme deleted", HttpStatus.OK);
+        Map<String, Object> nameToMessage = new HashMap<>();
+        nameToMessage.put("message", "Meme deleted");
+        return new ResponseEntity<>(nameToMessage, HttpStatus.OK);
     }
 }

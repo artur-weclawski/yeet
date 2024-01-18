@@ -9,6 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RequestMapping("/user")
 @RestController
 @CrossOrigin(value = "*", maxAge = 3600)
@@ -30,7 +33,9 @@ public class UserController {
     @DeleteMapping("/{userId}")
     public ResponseEntity<?> deleteUser(@PathVariable Long userId){
         userServiceInterface.deleteUser(userId);
-        return new ResponseEntity<>("Account deleted.", HttpStatus.OK);
+        Map<String, Object> nameToMessage = new HashMap<>();
+        nameToMessage.put("message", "Account deleted.");
+        return new ResponseEntity<>(nameToMessage, HttpStatus.OK);
     }
 
 }

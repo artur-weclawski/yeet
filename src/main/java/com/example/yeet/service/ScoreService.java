@@ -20,20 +20,19 @@ public class ScoreService implements ScoreServiceInterface {
     private final MemeServiceInterface memeServiceInterface;
 
 
-    //TODO change name to addAndUpdateScore
     @Override
-    public ScoreDAO addScore(ScoreDTO score) {
+    public ScoreDAO addOrUpdateScore(ScoreDTO score) {
         ScoreDAO newScore = new ScoreDAO();
         newScore.setScore(score.getScore());
         newScore.setMeme(memeServiceInterface.findMemeById(score.getMeme_id()));
         newScore.setUser(userServiceInterface.findUserById(score.getUser_id()));
         if(scoreRepository.existsScoreDAOByUser_IdAndMeme_Id(score.getUser_id(), score.getMeme_id())){
-            scoreRepository.delete(scoreRepository.findScoreDAOByUser_IdAndMeme_Id(score.getUser_id(), score.getMeme_id()));
+            return updateScore(score.getScore(), score.getUser_id(), score.getMeme_id());
+        }else {
+            return scoreRepository.save(newScore);
         }
-        return scoreRepository.save(newScore);
     }
 
-    //TODO remove
     @Override
     public ScoreDAO updateScore(int score, Long user_id, Long meme_id) {
         ScoreDAO newScore = scoreRepository.findScoreDAOByUser_IdAndMeme_Id(user_id, meme_id);
