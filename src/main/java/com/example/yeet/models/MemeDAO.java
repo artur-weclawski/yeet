@@ -18,9 +18,11 @@ public class MemeDAO {
     private long id;
 
     @Column
+    @NotNull
     private String title;
 
     @Column
+    @NotNull
     private String url;
 
     @ManyToOne

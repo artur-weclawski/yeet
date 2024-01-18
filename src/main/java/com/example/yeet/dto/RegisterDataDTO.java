@@ -17,10 +17,12 @@ public class RegisterDataDTO {
     @Size(min = 5)
     @Size(max = 12)
     private String name;
+
     @NotNull
     @NotBlank(message = "Wrong email")
     @Email
     private String email;
+
     @NotNull
     @NotBlank(message = "Wrong password")
     @Size(min = 8)

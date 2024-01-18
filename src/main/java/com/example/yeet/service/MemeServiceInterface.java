@@ -1,7 +1,6 @@
 package com.example.yeet.service;
 
 import com.example.yeet.dto.AddMemeDTO;
-import com.example.yeet.dto.MemeDTO;
 import com.example.yeet.models.MemeDAO;
 
 
@@ -18,5 +17,5 @@ public interface MemeServiceInterface {
 
     public MemeDAO findMemeById(Long meme_id);
 
-    public Double sumMemeScore(Long meme_id);
+    public Double meanMemeScore(Long meme_id);
 }

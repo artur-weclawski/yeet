@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface ScoreRepository extends JpaRepository<ScoreDAO, Long> {
     ScoreDAO findScoreDAOByUser_IdAndMeme_Id(Long user_id, Long meme_id);
     List<ScoreDAO> findScoreDAOSByMeme_Id(Long meme_id);
+
+    Boolean existsScoreDAOByUser_IdAndMeme_Id(Long user_id, Long meme_id);
 }

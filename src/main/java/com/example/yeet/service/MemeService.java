@@ -51,21 +51,6 @@ public class MemeService implements MemeServiceInterface{
         return memeRepository.findMemeDAOById(meme_id);
     }
 
-
-    //TODO zmien nazwe na srednią
-    @Override
-    public Double sumMemeScore(Long meme_id) {
-        List<ScoreDTO> scoresList = ScoreConverter.mapToScoresDTO(scoreRepository.findScoreDAOSByMeme_Id(meme_id));
-        Double sum = scoresList.stream()
-                .mapToDouble(ScoreDTO::getScore)
-                .sum();
-        long count = scoresList.size();
-        if(count == 0){
-            count = 1;
-        }
-        return sum/count;
-    }
-
     public static Double countMean(List<ScoreDAO> scoresList){
         Double sum = scoresList.stream()
                 .mapToDouble(ScoreDAO::getScore)
@@ -76,4 +61,11 @@ public class MemeService implements MemeServiceInterface{
         }
         return sum/count;
     }
+
+    @Override
+    public Double meanMemeScore(Long meme_id) {
+        return countMean(scoreRepository.findScoreDAOSByMeme_Id(meme_id));
+    }
+
+
 }

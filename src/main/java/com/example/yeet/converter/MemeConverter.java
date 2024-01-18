@@ -16,6 +16,7 @@ public class MemeConverter {
 
     public static MemeDTO mapToMemeDto(MemeDAO meme){
         return MemeDTO.builder()
+                .id(meme.getId())
                 .title(meme.getTitle())
                 .url(meme.getUrl())
                 .user(UserConverter.mapToUserDto(meme.getUser()))

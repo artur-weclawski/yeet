@@ -20,26 +20,26 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
     @ExceptionHandler(UserAlreadyExistsException.class)
     public ResponseEntity<?> handleUserAlreadyExistsException(UserAlreadyExistsException exception, WebRequest request) {
         Map<String, Object> nameToMessage = new HashMap<>();
-        nameToMessage.put("message: ", exception.getMessage());
+        nameToMessage.put("message", exception.getMessage());
         return new ResponseEntity<>(nameToMessage, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(EmailAlreadyTakenException.class)
     public ResponseEntity<?> handleEmailAlreadyTakenException(EmailAlreadyTakenException exception, WebRequest request) {
         Map<String, Object> nameToMessage = new HashMap<>();
-        nameToMessage.put("message: ", exception.getMessage());
+        nameToMessage.put("message", exception.getMessage());
         return new ResponseEntity<>(nameToMessage, HttpStatus.BAD_REQUEST);
     }
     @ExceptionHandler(MemeNotFoundException.class)
     public ResponseEntity<?> handleMemeNotFoundException(MemeNotFoundException exception, WebRequest request) {
         Map<String, Object> nameToMessage = new HashMap<>();
-        nameToMessage.put("message: ", exception.getMessage());
+        nameToMessage.put("message", exception.getMessage());
         return new ResponseEntity<>(nameToMessage, HttpStatus.BAD_REQUEST);
     }
     @ExceptionHandler(SamePasswordException.class)
     public ResponseEntity<?> handleSamePasswordException(SamePasswordException exception, WebRequest request) {
         Map<String, Object> nameToMessage = new HashMap<>();
-        nameToMessage.put("message: ", exception.getMessage());
+        nameToMessage.put("message", exception.getMessage());
         return new ResponseEntity<>(nameToMessage, HttpStatus.BAD_REQUEST);
     }
 }

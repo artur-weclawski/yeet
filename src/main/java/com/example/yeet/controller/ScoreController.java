@@ -30,6 +30,6 @@ public class ScoreController {
 
     @GetMapping("/{meme_id}")
     public ScoreSumDTO getMemeScoreSum(@PathVariable Long meme_id){
-        return ScoreConverter.mapToScoreSumDTO(memeServiceInterface.sumMemeScore(meme_id));
+        return ScoreConverter.mapToScoreSumDTO(memeServiceInterface.meanMemeScore(meme_id));
     }
 }
