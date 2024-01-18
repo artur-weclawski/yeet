@@ -12,6 +12,7 @@ import Menu from "@mui/material/Menu";
 import Tooltip from "@mui/material/Tooltip";
 import FolderIcon from '@mui/icons-material/Folder';
 import MenuIcon from '@mui/icons-material/Menu';
+import RegisterPage from "./Pages/RegisterPage";
 
 function  AppBarNavigation({token, setToken, user, setUser}) {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -126,7 +127,7 @@ function  AppBarNavigation({token, setToken, user, setUser}) {
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             >
                                 <Link to={"/"} style={{textDecoration: 'none', color: 'inherit'}}>
-                                {"Home Button"}
+                                {"Home Page"}
                                 </Link>
                             </Button>
                     </Box>
@@ -139,7 +140,7 @@ function  AppBarNavigation({token, setToken, user, setUser}) {
                                 sx={{ my: 2, color: 'white',  display: user !== null ? 'block' : 'none'} }
 
                             >
-                                {'Profile'}
+                                {user !== null ? user.name : 'Profile'}
                             </Button>
                         </Tooltip>
                         <Tooltip title={'Go to Login Page'}>
@@ -203,12 +204,12 @@ const App = () =>{
           <AppBarNavigation token={token} setToken={setToken} user={user} setUser={setUser}/>
           <Routes>
       <Route>
-        <Route index element={<HomePage token={token} setToken={setToken} user={user} setUser={setUser}/>} />
+        <Route index element={<HomePage token={token} setToken={setToken} user={user} setUser={setUser} />} />
         <Route path={"login"} element={<LoginPage setToken={setToken} setUser={setUser}/>} />
-        <Route path={"register"} token={token} setToken={setToken} user={user} setUser={setUser}/>
+        <Route path={"register"} element={<RegisterPage />}/>
       </Route>
       <Route element={<ProtectedRoute user={user}/>}>
-        <Route index element={<HomePage token={token} setToken={setToken} user={user} setUser={setUser}/>} />
+        <Route index element={<HomePage token={token} setToken={setToken} user={user} setUser={setUser} />} />
         <Route path={"account"} token={token} setToken={setToken} user={user} setUser={setUser}/>
       </Route>
     </Routes>
