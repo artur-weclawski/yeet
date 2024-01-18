@@ -13,6 +13,8 @@ import Tooltip from "@mui/material/Tooltip";
 import FolderIcon from '@mui/icons-material/Folder';
 import MenuIcon from '@mui/icons-material/Menu';
 import RegisterPage from "./Pages/RegisterPage";
+import SingleMemePage from "./Pages/SingleMemePage";
+import AccountPage from "./Pages/AccountPage";
 
 function  AppBarNavigation({token, setToken, user, setUser}) {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -50,7 +52,7 @@ function  AppBarNavigation({token, setToken, user, setUser}) {
                         variant="h6"
                         noWrap
                         component="a"
-                        href="#app-bar-with-responsive-menu"
+                        href="/"
                         sx={{
                             mr: 2,
                             display: { xs: 'none', md: 'flex' },
@@ -105,7 +107,7 @@ function  AppBarNavigation({token, setToken, user, setUser}) {
                         variant="h5"
                         noWrap
                         component="a"
-                        href="#app-bar-with-responsive-menu"
+                        href="/"
                         sx={{
                             mr: 2,
                             display: { xs: 'flex', md: 'none' },
@@ -170,8 +172,7 @@ function  AppBarNavigation({token, setToken, user, setUser}) {
                             onClose={handleCloseUserMenu}
                         >
                             <MenuItem key={'account'} onClick={handleCloseUserMenu}>
-                                <Link to={'/account'} style={{textDecoration: 'none', color: 'inherit'}}
-                                >
+                                <Link to={"/account"} style={{textDecoration: 'none', color: 'inherit'}}>
                                     <Typography textAlign="center">{'Profile'}</Typography>
                                 </Link>
                             </MenuItem>
@@ -205,12 +206,12 @@ const App = () =>{
           <Routes>
       <Route>
         <Route index element={<HomePage token={token} setToken={setToken} user={user} setUser={setUser} />} />
+          <Route path={"meme/:meme_id"} element={<SingleMemePage token={token} setToken={setToken} user={user} setUser={setUser}/>} />
         <Route path={"login"} element={<LoginPage setToken={setToken} setUser={setUser}/>} />
         <Route path={"register"} element={<RegisterPage />}/>
       </Route>
       <Route element={<ProtectedRoute user={user}/>}>
-        <Route index element={<HomePage token={token} setToken={setToken} user={user} setUser={setUser} />} />
-        <Route path={"account"} token={token} setToken={setToken} user={user} setUser={setUser}/>
+        <Route path={"account"} element={<AccountPage token={token} setToken={setToken} user={user} setUser={setUser}/>} />
       </Route>
     </Routes>
       </ThemeProvider>

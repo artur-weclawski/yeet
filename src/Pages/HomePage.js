@@ -5,7 +5,7 @@ import {Box, Button, Card, CardActions, CardContent, CardMedia, Rating, Stack, T
 import Read from "../Components/CRUD/Insecure/Read";
 import {useEffect, useState} from "react";
 import TCreate from "../Components/CRUD/Secure/TCreate";
-import TUpdate from "../Components/CRUD/Secure/TUpdate";
+import {Link} from "react-router-dom";
 
 const style = {
     position: 'absolute',
@@ -33,7 +33,7 @@ function MediaCard({token, user, name, mean, title, url, meme_id}) {
         <Card sx={{ maxWidth: 800, maxHeight: 800, minWidth: 700, minHeight: 500 }}>
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                    {title}
+                    <Link to={"/meme/"+ meme_id } style={{textDecoration: 'none', color: 'inherit'}}>{title}</Link>
                 </Typography>
                 <Typography gutterBottom variant="h8" component="div">
                     {name}
@@ -45,7 +45,7 @@ function MediaCard({token, user, name, mean, title, url, meme_id}) {
                 title={title}
             />
             <CardActions>
-                <Rating id='score' name="half-rating" defaultValue={mean} precision={0.1} readOnly={(token === null)} onChange={handleAddScore} />
+                <Rating id='score' name="half-rating" defaultValue={mean} precision={0.5} readOnly={(token === null)} onChange={handleAddScore} />
             </CardActions>
         </Card>
     );
@@ -88,7 +88,11 @@ function BasicStack({token, user}) {
 function BasicModal({token, user}) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const handleClose = () => {
+        setOpen(false)
+        setIsError(false)
+        setError("")
+    };
 
     const [title, setTitle] = useState("")
     const [url, setUrl] = useState("")
@@ -100,11 +104,13 @@ function BasicModal({token, user}) {
 
     const handleAddPost = async (event) => {
         event.preventDefault()
+        let isErrorInHandle = false
         if(title.length === 0 || title.length > 255 || url.length === 0 || url.length > 255){
             setError("Wprowadzono błędne dane")
             setIsError(true)
+            isErrorInHandle = true
         }
-        if(!isError){
+        if(!isErrorInHandle){
             await handleCreate({title: title, url: url, user_id: user.id}, "meme", token)
             window.location.reload(false)
         }else{
