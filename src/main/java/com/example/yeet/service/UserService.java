@@ -3,6 +3,7 @@ package com.example.yeet.service;
 import com.example.yeet.exceptions.EmailAlreadyTakenException;
 import com.example.yeet.exceptions.SamePasswordException;
 import com.example.yeet.exceptions.UserAlreadyExistsException;
+import com.example.yeet.exceptions.WrongDataProvidedException;
 import com.example.yeet.models.UserDAO;
 import com.example.yeet.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -39,6 +40,8 @@ public class UserService implements UserDetailsService, UserServiceInterface {
             throw new UserAlreadyExistsException(user.getName());
         } else if (userRepository.existsUserByEmail(user.getEmail())) {
             throw new EmailAlreadyTakenException(user.getEmail());
+        } else if(user.getName().isEmpty() || user.getEmail().isEmpty()){
+            throw new WrongDataProvidedException();
         }
         else{
             UserDAO newUser = new UserDAO();
