@@ -52,7 +52,6 @@ function BasicNameModal({token, setToken, user, setUser}) {
             isErrorInHandle = true
         }
         const response = await handleUpdate(token, null ,'user/changeName/' + user.name + '/' + newName)
-        console.log(response.message)
         if(response.hasOwnProperty('message') || isErrorInHandle){
             setError("Username taken")
             setIsError(true)
@@ -116,7 +115,6 @@ function BasicPasswordModal({token, setToken, user, setUser}) {
 
     function validatePassword(password) {
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
-        console.log('a' + passwordRegex.test(password))
         return passwordRegex.test(password);
     }
 
@@ -137,7 +135,6 @@ function BasicPasswordModal({token, setToken, user, setUser}) {
             isErrorInHandle = true
         }
         const response = await handleUpdate(token, null ,'user/changePassword/' + user.name + '/' + newPassword)
-        console.log(response.message)
         if(response.hasOwnProperty('message') || isErrorInHandle){
             setError("Wrong password")
             setIsError(true)
@@ -206,7 +203,7 @@ function BasicCard({token, setToken, user, setUser}) {
         window.location.reload();
     }
     return (
-        <Card sx={{ minWidth: 400 }}>
+        <Card style={{ width: '99vw', marginTop: '5px'}}>
             <CardContent>
                 <Typography variant="h5" color="text.secondary" gutterBottom>
                     Username
@@ -285,7 +282,6 @@ function BasicStack({token, user}) {
             const response = await handleRead(token, `memes/user/${user.name}`)
             const data = await response
             setData(data.slice().reverse())
-            console.log(data.slice().reverse())
             setIsLoaded(true)
         }
         fetchData();
@@ -293,7 +289,7 @@ function BasicStack({token, user}) {
 
     if(isLoaded){
         return (
-            <Box sx={{ width: 'calc(100% - 400px)', position: 'absolute', display: 'flex', justifyContent: 'center'}}>
+            <Box sx={{width: '99vw', position: 'absolute', display: 'flex', justifyContent: 'center', justifySelf: 'center'}}>
                 <Stack spacing={2}>
                     {
                         data.map(res => {
@@ -307,12 +303,12 @@ function BasicStack({token, user}) {
 }
 const AccountPage = ({token, setToken, user, setUser}) => {
     return (
-        <Grid container spacing={0}>
+        <Grid container spacing={2} direction={'column'} style={{width: '99vw'}}>
             <Grid xs={2}>
-                <BasicCard token={token} setToken={setToken}  user={user} setUser={setUser}/>
+                <BasicCard token={token} setToken={setToken}  user={user} setUser={setUser} />
             </Grid>
-            <Grid xd={10}>
-                <BasicStack token={token} user={user}/>
+            <Grid xs={8}>
+                <BasicStack token={token} user={user} />
             </Grid>
         </Grid>
     );

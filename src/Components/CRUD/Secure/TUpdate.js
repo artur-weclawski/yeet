@@ -13,7 +13,6 @@ const TUpdate = () => {
             },
             body: JSON.stringify(body)
         });
-        console.log(response)
         return await response.json()
 
     }

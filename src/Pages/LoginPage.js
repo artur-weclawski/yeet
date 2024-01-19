@@ -24,7 +24,7 @@ function LoginCard({setToken, setUser}) {
             setToken(response.token)
             navigate("/")
         } else {
-            setError(response.error)
+            setError("Wrong data provided.")
             setIsError(true)
         }
     }
@@ -37,7 +37,7 @@ function LoginCard({setToken, setUser}) {
                     Login
                 </Typography>
                 <form onSubmit={ handleLogin } style={{display:'flex', alignItems:'center', flexDirection:'column'}}>
-                    <div style={{display: isError ? 'block' : 'none', color:'red', fontSize:'0.8rem'}}> {"Wrong data provided."} </div>
+                    <div style={{display: isError ? 'block' : 'none', color:'red', fontSize:'0.8rem'}}> {error} </div>
                     <TextField id="name" label="Name" variant="standard" error={isError} style={{alignSelf: 'center'}} onChange={(e) => setName(e.target.value)} />
                     <TextField id="password" label="Password" variant="standard" type={'password'} error={isError} onChange={(e) => setPassword(e.target.value)}/>
 

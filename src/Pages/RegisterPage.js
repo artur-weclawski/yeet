@@ -7,7 +7,6 @@ import * as React from "react";
 
 function validatePassword(password) {
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
-    console.log('a' + passwordRegex.test(password))
     return passwordRegex.test(password);
 }
 

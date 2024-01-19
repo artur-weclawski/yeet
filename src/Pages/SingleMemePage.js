@@ -5,20 +5,9 @@ import * as React from "react";
 import Read from "../Components/CRUD/Insecure/Read";
 import {useEffect, useState} from "react";
 
-const SingleMemePage = ({token, setToken, user, setUser}) =>{
-    const style = {
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: '500px',
-        bgcolor: 'background.paper',
-        border: '2px solid #000',
-        boxShadow: 24,
-        p: 4,
-    };
+const SingleMemePage = ({token, user}) =>{
+
     function MediaCard({token, user, name, mean, title, url, meme_id}) {
-        console.log(user)
         const {
             handleCreate
         } = TCreate()

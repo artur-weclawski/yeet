@@ -20,7 +20,6 @@ const style = {
 };
 
 function MediaCard({token, user, name, mean, title, url, meme_id}) {
-    console.log(user)
     const {
         handleCreate
     } = TCreate()
@@ -30,7 +29,7 @@ function MediaCard({token, user, name, mean, title, url, meme_id}) {
         await handleCreate({meme_id: meme_id, user_id: user.id, score: newScore}, "score", token)
     }
     return (
-        <Card sx={{ maxWidth: 800, maxHeight: 800, minWidth: 700, minHeight: 500 }}>
+        <Card sx={{ minWidth: 700, minHeight: 800 }}>
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                     <Link to={"/meme/"+ meme_id } style={{textDecoration: 'none', color: 'inherit'}}>{title}</Link>
@@ -40,7 +39,7 @@ function MediaCard({token, user, name, mean, title, url, meme_id}) {
                 </Typography>
             </CardContent>
             <CardMedia
-                sx={{ height: 500 }}
+                sx={{ height: 700}}
                 image={url}
                 title={title}
             />
@@ -64,7 +63,6 @@ function BasicStack({token, user}) {
             const response = await handleRead(token, "")
             const data = await response
             setData(data.slice().reverse())
-            console.log(data.slice().reverse())
             setIsLoaded(true)
         }
         fetchData();
@@ -106,7 +104,7 @@ function BasicModal({token, user}) {
         event.preventDefault()
         let isErrorInHandle = false
         if(title.length === 0 || title.length > 255 || url.length === 0 || url.length > 255){
-            setError("Wprowadzono błędne dane")
+            setError("Wrong data provided.")
             setIsError(true)
             isErrorInHandle = true
         }
@@ -151,7 +149,7 @@ function BasicModal({token, user}) {
 
 
 
-const HomePage = ({token, setToken, user, setUser}) =>{
+const HomePage = ({token, user}) =>{
     return(
         <div>
             <BasicModal token={token} user={user}/>

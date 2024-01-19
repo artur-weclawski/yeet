@@ -202,11 +202,11 @@ const App = () =>{
     return (
       <ThemeProvider theme={darkTheme}>
           <CssBaseline/>
-          <AppBarNavigation token={token} setToken={setToken} user={user} setUser={setUser}/>
+          <AppBarNavigation token={token} setToken={setToken} user={user} setUser={setUser} />
           <Routes>
       <Route>
-        <Route index element={<HomePage token={token} setToken={setToken} user={user} setUser={setUser} />} />
-          <Route path={"meme/:meme_id"} element={<SingleMemePage token={token} setToken={setToken} user={user} setUser={setUser}/>} />
+        <Route index element={<HomePage token={token} user={user} />} />
+          <Route path={"meme/:meme_id"} element={<SingleMemePage token={token} user={user} />} />
         <Route path={"login"} element={<LoginPage setToken={setToken} setUser={setUser}/>} />
         <Route path={"register"} element={<RegisterPage />}/>
       </Route>
