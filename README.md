@@ -14,6 +14,6 @@ Yeet is a web app for sharing memes with other users. Main functionalities are:
  - User authorization.
  - Validation of context.
 
-App using React.js as frontend with MUI components and Spring as backend with JWT and JPARepository.
+App is using React.js as **FRONTEND** with MUI components and Spring as **BACKEND** with JWT and JPARepository.
 
 (Note: The SQL database files used in XAMPP might be lost.)
