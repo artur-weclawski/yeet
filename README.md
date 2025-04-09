@@ -1,4 +1,5 @@
 # yeet - web app
+**FRONTEND** and **BACKEND** are in their corresponding branches.
 
 Yeet is a web app for sharing memes with other users. Main functionalities are:
  - Account:
